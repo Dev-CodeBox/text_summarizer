@@ -1,0 +1,95 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Summarize Text</title>
+    {% tailwind_css %}
+    <script>
+      function copySummary() {
+        const summary = document.getElementById("summaryText");
+        navigator.clipboard.writeText(summary.textContent.trim());
+        alert("Summary copied to clipboard!");
+      }
+    </script>
+  </head>
+
+  <body class="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans">
+    <section class="max-w-3xl mx-auto px-4 py-12">
+      <h1 class="text-4xl font-bold text-center text-blue-700 dark:text-blue-400 mb-8">
+        AI Text Summarizer
+      </h1>
+
+      <form method="POST" class="space-y-8 bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+        {% csrf_token %}
+
+        <div>
+          <label for="text" class="block mb-2 font-semibold text-gray-700 dark:text-gray-200">
+            Enter your text:
+          </label>
+          <textarea
+            id="text"
+            name="text"
+            rows="6"
+            required
+            class="textarea textarea-bordered w-full dark:bg-gray-700 dark:text-white resize-none"
+          ></textarea>
+        </div>
+
+        <div>
+          <label class="block mb-2 font-semibold text-gray-700 dark:text-gray-200">
+            Choose Tone:
+          </label>
+          <div class="flex flex-wrap gap-6">
+            <label class="flex items-center cursor-pointer">
+              <input type="radio" name="tone" value="formal" class="radio" required />
+              <span class="ml-2">Formal</span>
+            </label>
+            <label class="flex items-center cursor-pointer">
+              <input type="radio" name="tone" value="casual" class="radio" />
+              <span class="ml-2">Informal</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block mb-2 font-semibold text-gray-700 dark:text-gray-200">
+            Choose Length:
+          </label>
+          <div class="flex flex-wrap gap-6">
+            <label class="flex items-center cursor-pointer">
+              <input type="radio" name="length" value="short" class="radio" required />
+              <span class="ml-2">Short</span>
+            </label>
+            <label class="flex items-center cursor-pointer">
+              <input type="radio" name="length" value="long" class="radio" />
+              <span class="ml-2">Long</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary text-white px-6 text-lg">
+            Generate Summary
+          </button>
+        </div>
+      </form>
+    </section>
+
+    {% if summary %}
+    <div class="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl max-w-xl w-full text-center space-y-6 overflow-y-auto max-h-[80vh]">
+        <h2 class="text-2xl font-bold text-blue-600 dark:text-blue-400"> Your Summary</h2>
+        <p id="summaryText" class="text-gray-800 dark:text-gray-100 whitespace-pre-line">
+          {{ summary }}
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 pt-4">
+          <button onclick="copySummary()" class="btn btn-success px-4">Copy</button>
+          <a href="{% url 'summarize_text' %}" class="btn btn-outline">Close</a>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </body>
+</html>

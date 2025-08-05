@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtualenv
+.venv/
+env/
+venv/
+
+# Django specific
+db.sqlite3
+*.log
+staticfiles/
+
+# Tailwind/Django-Tailwind specific
+theme/static/css/dist/
+
+# IDE/editor
+.vscode/
+.idea/
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Environment Variables
+.env

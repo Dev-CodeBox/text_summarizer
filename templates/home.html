@@ -1,0 +1,64 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | AI Text Summarizer</title>
+    {% tailwind_css %}
+  </head>
+
+  <body class="max-w-screen h-screen overflow-hidden bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans leading-relaxed">
+    <main class="h-full flex flex-col">
+      <!-- Top section -->
+      <section class="flex-1 flex flex-col items-center justify-center text-center px-4 bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-900">
+        <h1 class="text-4xl sm:text-5xl font-extrabold mb-2 text-blue-700 dark:text-blue-400">
+          Summarize Text Using AI
+        </h1>
+        <p class="text-lg sm:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mb-4">
+          Paste any paragraph and let our AI generate a concise summary with your chosen tone and length.
+        </p>
+        <a
+          href="{% url 'summarize_text' %}"
+          class="btn btn-primary text-white text-lg px-6 py-2 shadow-lg hover:scale-105 transition-transform duration-200"
+        >
+          Get Started
+        </a>
+      </section>
+
+      <!-- Features section (scrollable if needed) -->
+      <section class="max-h-[40vh] overflow-y-auto px-4 py-4 bg-gray-50 dark:bg-gray-800">
+        <h2 class="text-2xl font-bold text-center mb-4 text-blue-700 dark:text-blue-300">
+          Why Choose Us?
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div class="card bg-base-100 shadow p-4 border dark:border-gray-700 hover:shadow-lg transition">
+            <h3 class="text-lg font-semibold mb-2 text-blue-600">Fast And Accurate</h3>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">
+              Lightning-fast summaries powered by advanced AI models.
+            </p>
+          </div>
+
+          <div class="card bg-base-100 shadow p-4 border dark:border-gray-700 hover:shadow-lg transition">
+            <h3 class="text-lg font-semibold mb-2 text-blue-600">Tone Control</h3>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">
+              Choose from formal, casual, or even funny tones for your summaries.
+            </p>
+          </div>
+
+          <div class="card bg-base-100 shadow p-4 border dark:border-gray-700 hover:shadow-lg transition">
+            <h3 class="text-lg font-semibold mb-2 text-blue-600">Custom Length</h3>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">
+              Generate summaries with short, medium, or detailed length settings.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="text-center text-sm py-2 bg-white dark:bg-gray-900 text-gray-500 border-t dark:border-gray-700">
+        &copy; 2025 <span class="font-medium">AI Text Summarizer</span>. All rights reserved.
+      </footer>
+    </main>
+  </body>
+</html>
